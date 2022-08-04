@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#SBATCH -p gpu_shared
+#SBATCH --gpus=1
+#SBATCH --cpus-per-task=5
+#SBATCH --job-name=ConvTypeBasline
+#SBATCH --ntasks=1
+#SBATCH --time=09:00:00
+#SBATCH --output=job_files/baselines_run45_%A.out
+
+module purge
+module load 2021
+module load Anaconda3/2021.05
+
+source activate inpaint_env
+
+python train.py 'hyper_params/baseline.yml' 4
+python train.py 'hyper_params/baseline.yml' 5
+
+echo 'done'
+

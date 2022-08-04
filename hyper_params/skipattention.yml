@@ -1,0 +1,15 @@
+project: Thesis
+name: Skip Attention
+
+parameters:
+    model name: 'GatedSkipAttention'
+    model class: 'SkipAttentionModel'
+    encoder type: 'gated'
+
+    multiscale: False
+    smoothness loss: False
+
+    batch size: 8
+    lr: 0.0001
+    monitor: 'val_loss_total'
+    epochs: 12
