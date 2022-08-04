@@ -4,7 +4,11 @@ name: Edge Attention
 parameters:
     model name: 'EdgeAttentionModel'
     model class: 'EdgeAttentionModel'
-    batch size: 4
+    encoder type: 'gated'
+
+    lambda depth: 0.6
+    lambda edge: 0.4
+    batch size: 8
     lr: 0.0001
-    monitor: 'val_l1_depth_loss' # val total loss?
-    epochs': 8
+    monitor: 'val_l1_depth_loss'
+    epochs: 8

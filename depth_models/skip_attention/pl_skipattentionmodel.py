@@ -4,7 +4,7 @@ from torch import optim
 import torch.nn.functional as F
 from depth_models.skip_attention.skipattention import SkipAttentionNet
 from modules.evaluation import compute_eval_measures
-from modules.criterions import single_disp_smoothness
+from modules.criterions import single_disp_smoothness, L1_loss
 
 
 class SkipAttentionModel(pl.LightningModule):
@@ -43,13 +43,13 @@ class SkipAttentionModel(pl.LightningModule):
             gt_down1x = F.interpolate(depth_gt, size=(size//2, size//2), mode='bilinear', align_corners=True)
             mask_down1x = F.interpolate(depth_gt, size=(size//2, size//2), mode='nearest')
 
-            l1_down2x = F.l1_loss(out_down2x * mask_down2x, gt_down2x * mask_down2x, reduction='mean') / mask_down2x.sum()
-            l1_down1x = F.l1_loss(out_down1x * mask_down1x, gt_down1x * mask_down1x, reduction='mean') / mask_down1x.sum()
-            l1_full = F.l1_loss(out_full * mask, depth_gt * mask, reduction='mean') / mask.sum()
+            l1_down2x = L1_loss(out_down2x, gt_down2x, mask_down2x)
+            l1_down1x = L1_loss(out_down1x, gt_down1x, mask_down1x)
+            l1_full = L1_loss(out_full, depth_gt, mask)
             
             l1_loss = (l1_down2x, l1_down1x, l1_full)
         else:
-            l1_loss = F.l1_loss(depth_pred * mask, depth_gt * mask, reduction='mean') / mask.sum()
+            l1_loss = L1_loss(depth_pred, depth_gt, mask)
 
         if self.smoothness_loss:
             if self.multiscale:
@@ -94,7 +94,7 @@ class SkipAttentionModel(pl.LightningModule):
             self.log('val_l1_downsampled2x', l1_down2x)
             self.log('val_l1_downsampled1x', l1_down1x)
             self.log('val_l1_full', l1_full)
-            l1_loss = 0.25 * l1_down2x + 0.25 * l1_down1x + 0.5 * l1_full
+            l1_loss = (l1_down2x + l1_down1x + l1_full) / 3
         else:
             self.log('val_l1_depth_loss', l1_loss)
         

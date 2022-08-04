@@ -4,6 +4,7 @@ from torch import optim
 import torch.nn.functional as F
 from depth_models.skipnet.skipnet import SkipNet
 from modules.evaluation import compute_eval_measures
+from modules.criterions import L1_loss
 
 
 class SkipNetModel(pl.LightningModule):
@@ -31,7 +32,7 @@ class SkipNetModel(pl.LightningModule):
         mask = batch['mask']
 
         depth_pred = self.forward(batch)
-        l1_loss = F.l1_loss(depth_pred * mask, depth_gt * mask, reduction='mean') / mask.sum()
+        l1_loss = L1_loss(depth_pred, depth_gt, mask)
 
         return l1_loss
    

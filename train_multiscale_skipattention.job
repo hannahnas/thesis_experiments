@@ -6,7 +6,7 @@
 #SBATCH --job-name=GatedMultiscaleSkipattention
 #SBATCH --ntasks=1
 #SBATCH --time=08:00:00
-#SBATCH --output=job_files/gated_multiscale_rescaledl1_skipattention_run1_%A.out
+#SBATCH --output=job_files/multiscale_skipattention_%A.out
 
 module purge
 module load 2021
@@ -14,5 +14,5 @@ module load Anaconda3/2021.05
 
 source activate inpaint_env
 
-python train.py 'hyper_params/multiscale_skipattention.yml' 1
+python train.py 'hyper_params/multiscale_skipattention.yml' 10
 

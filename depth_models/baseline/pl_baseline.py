@@ -5,6 +5,7 @@ import torch.nn.functional as F
 from modules.encoder import ResNetEncoder
 from depth_models.baseline.decoder import ResNetDecoder
 from modules.evaluation import compute_eval_measures
+from modules.criterions import L1_loss
 
 
 class BaselineModel(pl.LightningModule):
@@ -37,7 +38,7 @@ class BaselineModel(pl.LightningModule):
         mask = batch['mask']
 
         depth_pred = self.forward(batch)
-        l1_loss = F.l1_loss(depth_pred * mask, depth_gt * mask, reduction='mean') / mask.sum()
+        l1_loss = L1_loss(depth_pred, depth_gt, mask)
 
         self.log('train_l1_loss', l1_loss)
         return l1_loss
@@ -45,7 +46,7 @@ class BaselineModel(pl.LightningModule):
     def configure_optimizers(self):
         optimizer = optim.Adam(self.parameters(), lr=self.hyper_params['lr'])
 
-        return {"optimizer": optimizer, "monitor": "total_val_loss"}
+        return {"optimizer": optimizer, "monitor": self.hyper_params['monitor']}
 
     def training_step(self, batch, batch_idx):
         l1_loss = self._get_loss(batch)

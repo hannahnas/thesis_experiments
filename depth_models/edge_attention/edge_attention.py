@@ -2,30 +2,38 @@
 import torch
 import torch.nn as nn
 from modules.blocks import ResNetBlockDec
+from modules.encoder import ResNetEncoder
 
-
-class AttentionDecoder(nn.Module):
-    def __init__(self, gated=False):
+class EdgeAttention(nn.Module):
+    def __init__(self, hyper_params):
         super().__init__()
-        self._create_network(gated)
+        self.hyper_params = hyper_params
+        self._create_network()
         self._init_params()
 
-    def  _create_network(self, gated):
+    def  _create_network(self):
+        self.rgb_encoder = ResNetEncoder(in_channels=3, type=self.hyper_params['encoder type'])
+        self.depth_encoder = ResNetEncoder(in_channels=1, type=self.hyper_params['encoder type'])
+
         self.to_hidden = nn.Sequential(
             nn.Conv2d(512, 64, kernel_size=3, padding=1),
             nn.BatchNorm2d(64),
             nn.ReLU(inplace=True)
         )
 
-        self.attn1 = EdgeAttentionModule(64, 32, gated)
-        self.attn2 = EdgeAttentionModule(32, 16, gated)
-        self.attn3 = EdgeAttentionModule(16, 16, gated)
+        self.attn1 = EdgeAttentionModule(64, 32)
+        self.attn2 = EdgeAttentionModule(32, 16)
+        self.attn3 = EdgeAttentionModule(16, 16)
 
         self.conv_feat = nn.Conv2d(16, 1, kernel_size=3, padding=1)
-        self.conv_edge = nn.Conv2d(16, 2, kernel_size=3, padding=1)
+        self.conv_edge = nn.Conv2d(16, 1, kernel_size=3, padding=1)
     
 
-    def forward(self, feat):
+    def forward(self, rgb, depth):
+        rgb_feat = self.rgb_encoder(rgb)
+        depth_feat = self.depth_encoder(depth)
+        
+        feat = torch.cat([rgb_feat, depth_feat], dim=1)
 
         feat = self.to_hidden(feat)
         feat, edges = self.attn1(feat, feat)
@@ -47,18 +55,19 @@ class AttentionDecoder(nn.Module):
                 nn.init.constant_(m.weight, 1)
                 nn.init.constant_(m.bias, 0)
 
+
 class EdgeAttentionModule(nn.Module):
-    def __init__(self, in_channels, out_channels, gated):
+    def __init__(self, in_channels, out_channels):
         super().__init__()
 
         self.dec_block = nn.Sequential(
-            ResNetBlockDec(in_channels, in_channels, subsample=False, gated=gated),
-            ResNetBlockDec(in_channels, out_channels, subsample=True, gated=gated)
+            ResNetBlockDec(in_channels, in_channels, subsample=False),
+            ResNetBlockDec(in_channels, out_channels, subsample=True)
         )
 
         self.edge_block = nn.Sequential(
-            ResNetBlockDec(in_channels, in_channels, subsample=False, gated=gated),
-            ResNetBlockDec(in_channels, out_channels, subsample=True, gated=gated)
+            ResNetBlockDec(in_channels, in_channels, subsample=False),
+            ResNetBlockDec(in_channels, out_channels, subsample=True)
         )
         
 

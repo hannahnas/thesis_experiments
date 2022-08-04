@@ -9,20 +9,21 @@ from modules.dataset import InpaintDataset
 from depth_models.skip_attention.pl_skipattentionmodel import SkipAttentionModel
 from depth_models.baseline.pl_baseline import BaselineModel
 from depth_models.skipnet.pl_skipnet import SkipNetModel
-# from depth_models.edge_attention.pl_edgeattentionmodel import EdgeAttentionModel
+from depth_models.edge_attention.pl_edgeattentionmodel import EdgeAttentionModel
 
-CHECKPOINT_PATH = './lisa_checkpoints'
+CHECKPOINT_PATH = './checkpoints'
 device = torch.device(
     "cuda:0") if torch.cuda.is_available() else torch.device("cpu")
 
 modelname_to_class = {
     'BaselineModel': BaselineModel,
-    'SkipAttentionModel': SkipAttentionModel,
     'SkipNetModel': SkipNetModel,
-    # 'EdgeAttentionModel': EdgeAttentionModel,
+    'SkipAttentionModel': SkipAttentionModel,
+    'EdgeAttentionModel': EdgeAttentionModel,
 }
 
 def run_experiment(hyper_params):
+
     # Reproducability
     pl.seed_everything(42)
 
@@ -44,7 +45,7 @@ def run_experiment(hyper_params):
                              shuffle=False, drop_last=False, num_workers=4)
     
     model_checkpoint = ModelCheckpoint(save_weights_only=True, mode="min", monitor=hyper_params["monitor"])
-    early_stopping = EarlyStopping(monitor=hyper_params["monitor"], mode='min', patience=3)
+    early_stopping = EarlyStopping(monitor=hyper_params["monitor"], mode='min', patience=5)
 
     model_path = f"{hyper_params['model name']}_batch{hyper_params['batch size']}_lr{hyper_params['lr']}_{hyper_params['experiment id']}"
     path = os.path.join(CHECKPOINT_PATH, model_path)
@@ -74,8 +75,8 @@ def run_experiment(hyper_params):
     test_result = trainer.test(
         model, ckpt_path=best_model, dataloaders=test_loader, verbose=False)
     result = {"test": test_result, "val": val_result, "model_path": best_model, "hyper_params": hyper_params}
-    # To do: save hyperparams in dict
-    with open('./lisa_results/' + model_path + '.pickle', "wb") as f:
+
+    with open('./results/' + model_path + '.pickle', "wb") as f:
         pickle.dump(result, f)
 
 

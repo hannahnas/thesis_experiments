@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 class InpaintDataset(Dataset):
     def __init__(
         self,
-        #data_folder='/home/hannah/Documents/Thesis/data/preprocessed_structured3D',
+        # data_folder='/home/hannah/Documents/Thesis/data/preprocessed_structured3D',
         data_folder = '/project/pjsminha/data/preprocessed_structured3D',
         split = 'train'
     ):
