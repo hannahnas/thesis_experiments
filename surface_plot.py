@@ -9,6 +9,7 @@ import pytorch_lightning as pl
 from depth_models.skip_attention.pl_skipattentionmodel import SkipAttentionModel
 from depth_models.baseline.pl_baseline import BaselineModel
 from depth_models.skipnet.pl_skipnet import SkipNetModel
+from depth_models.edge_attention.pl_edgeattentionmodel import EdgeAttentionModel
 
 
 def get_geometry(color, depth, mask):
@@ -88,36 +89,48 @@ def plot_3D(gt, pred):
     vis.destroy_window()
     vis2.destroy_window()
 
-
 model2results_path = {
-    'SkipNet': '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/SkipNet_batch8_lr0.0001_1.pickle',
-    'SkipAttention': '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/GatedSkipAttention_batch8_lr0.0001_2.pickle',
-    'MultiScaleSkipAttention': '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/GatedMultiScaleSkipAttention(rescaledl1)_batch8_lr0.0001_2.pickle'
+    'SkipNet': '/home/hannah/Documents/Thesis/thesis_experiments/results/SkipNet_batch8_lr0.0001_10.pickle',
+    'SkipAttention': '/home/hannah/Documents/Thesis/thesis_experiments/results/GatedSkipAttention_batch8_lr0.0001_10.pickle',
+    'MultiScaleSkipAttention': '/home/hannah/Documents/Thesis/thesis_experiments/results/MultiScaleSkipAttention_batch8_lr0.0001_10.pickle',
+    'MultiScaleSkipAttentionSmooth': '/home/hannah/Documents/Thesis/thesis_experiments/results/MultiScaleSkipAttentionWithSmoothness_batch8_lr0.0001_10.pickle',
+    'EdgeAttention': '/home/hannah/Documents/Thesis/thesis_experiments/results/EdgeAttentionModel_batch8_lr0.0001_10.pickle'
 }
 
 modelname2class = {
     'BaselineModel': BaselineModel,
-    'SkipAttentionModel': SkipAttentionModel,
     'SkipNetModel': SkipNetModel,
-    # 'EdgeAttentionModel': EdgeAttentionModel,
+    'EdgeAttentionModel': EdgeAttentionModel,
+    'SkipAttentionModel': SkipAttentionModel,   
 }
 
 if __name__ == "__main__":
-    # Choose a model from: 'SkipNet', 'SkipAttention', 'MultiScaleSkipAttention'
-    results_path = model2results_path['MultiScaleSkipAttention']
+    # Choose a model from:
+    # evaluate = 'SkipNet'
+    # evaluate = 'EdgeAttention'
+    evaluate = 'SkipAttention'
+    # evaluate = 'MultiScaleSkipAttention'
+    # evaluate = 'MultiScaleSkipAttentionSmooth'
+
+    # Choose image: 0, 1, 2, 3
+    # index = 2 # flat surface
+    # index = 1 # complicated scene
+    # index = 0
+    index = 0
+
+    results_path = model2results_path[evaluate]
     file = open(results_path, 'rb')
     results = pickle.load(file)
     print(results['model_path'])
     model_class = modelname2class[results['hyper_params']['model class']]
 
-    model = model_class.load_from_checkpoint('LISA/'+results['model_path'], hyper_params=results['hyper_params'])
+    model = model_class.load_from_checkpoint(results['model_path'], hyper_params=results['hyper_params'])
 
     samples = ['032988', '040878', '106194', '066096']
     sample_path = '/home/hannah/Documents/Thesis/val_sample/'
-
-    index = 3
-    mask = generate_mask(248)
-    np.save(f'{sample_path}0_mask.npy', mask)
+    
+    # mask = generate_mask(248)
+    # np.save(f'{sample_path}0_mask.npy', mask)
 
     rgb = np.load(f'{sample_path}{samples[index]}_image.npy')[2:250, 2:250, :3]
     depth = np.load(f'{sample_path}{samples[index]}_depth.npy')[2:250, 2:250]
@@ -133,7 +146,9 @@ if __name__ == "__main__":
 
     depth_pred = model(batch)
 
-    if results['hyper_params']['multiscale']:
+    if results['hyper_params']['model name'] == 'EdgeAttentionModel':
+        depth_pred, _ = depth_pred
+    if 'multiscale' in results['hyper_params'].keys() and results['hyper_params']['multiscale']:
         _, _, depth_pred = depth_pred
 
     completed_depth = batch['depth'] * (1 - batch['mask']) + depth_pred * batch['mask']

@@ -14,5 +14,5 @@ module load Anaconda3/2021.05
 
 source activate inpaint_env
 
-python train.py 'hyper_params/skipnet.yml' 10
+python ../train.py 'hyper_params/experiment1/skipnet.yml' 2 10
 

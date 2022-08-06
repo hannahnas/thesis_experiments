@@ -10,6 +10,7 @@ from depth_models.skip_attention.pl_skipattentionmodel import SkipAttentionModel
 from depth_models.baseline.pl_baseline import BaselineModel
 from depth_models.skipnet.pl_skipnet import SkipNetModel
 from depth_models.edge_attention.pl_edgeattentionmodel import EdgeAttentionModel
+from depth_models.initial_models.pl_initial_models import InitialModel
 
 CHECKPOINT_PATH = './checkpoints'
 device = torch.device(
@@ -20,6 +21,7 @@ modelname_to_class = {
     'SkipNetModel': SkipNetModel,
     'SkipAttentionModel': SkipAttentionModel,
     'EdgeAttentionModel': EdgeAttentionModel,
+    'InitialModel': InitialModel
 }
 
 def run_experiment(hyper_params):
@@ -47,7 +49,7 @@ def run_experiment(hyper_params):
     model_checkpoint = ModelCheckpoint(save_weights_only=True, mode="min", monitor=hyper_params["monitor"])
     early_stopping = EarlyStopping(monitor=hyper_params["monitor"], mode='min', patience=5)
 
-    model_path = f"{hyper_params['model name']}_batch{hyper_params['batch size']}_lr{hyper_params['lr']}_{hyper_params['experiment id']}"
+    model_path = f"{hyper_params['model name']}_batch{hyper_params['batch size']}_{hyper_params['run id']}"
     path = os.path.join(CHECKPOINT_PATH, model_path)
     trainer = pl.Trainer(default_root_dir=path,
                          val_check_interval=0.25,
@@ -76,7 +78,7 @@ def run_experiment(hyper_params):
         model, ckpt_path=best_model, dataloaders=test_loader, verbose=False)
     result = {"test": test_result, "val": val_result, "model_path": best_model, "hyper_params": hyper_params}
 
-    with open('./results/' + model_path + '.pickle', "wb") as f:
+    with open(f"./results/experiment{hyper_params['experiment id']}/{model_path}.pickle", "wb") as f:
         pickle.dump(result, f)
 
 

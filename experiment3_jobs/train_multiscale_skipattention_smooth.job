@@ -3,10 +3,10 @@
 #SBATCH -p gpu_shared
 #SBATCH --gpus=1
 #SBATCH --cpus-per-task=5
-#SBATCH --job-name=GatedMultiscaleSkipattention
+#SBATCH --job-name=GatedMultiscaleSkipattentionSmooth
 #SBATCH --ntasks=1
 #SBATCH --time=08:00:00
-#SBATCH --output=job_files/multiscale_skipattention_%A.out
+#SBATCH --output=job_files/multiscale_skipattention_smooth_run_%A.out
 
 module purge
 module load 2021
@@ -14,5 +14,5 @@ module load Anaconda3/2021.05
 
 source activate inpaint_env
 
-python train.py 'hyper_params/multiscale_skipattention.yml' 10
+python ../train.py 'hyper_params/multiscale_skipattention_smooth.yml' 3 10 
 

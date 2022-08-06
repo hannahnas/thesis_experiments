@@ -1,0 +1,14 @@
+project: Thesis
+name: Single encoder
+
+parameters:
+    model name: "ChannelWiseInitialModel"
+    model class: "InitialModel"
+    encoder type: "gated"
+
+    rgb input: 'channelwise'
+
+    batch size: 4
+    lr: 0.0001
+    monitor: "val_l1_depth_loss"
+    epochs: 5

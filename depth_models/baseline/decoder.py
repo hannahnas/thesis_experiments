@@ -18,22 +18,17 @@ class ResNetDecoder(nn.Module):
         )
 
         self.layer_3 = nn.Sequential(
-            ResNetBlockDec(256, 256, subsample=False),
-            ResNetBlockDec(256, 128, subsample=True)
+            ResNetBlockDec(256, 128, subsample=True),
+            ResNetBlockDec(128, 128, subsample=False)
         )
 
         self.layer_2 = nn.Sequential(
-            ResNetBlockDec(128, 128, subsample=False),
-            ResNetBlockDec(128, 64, subsample=True)
+            ResNetBlockDec(128, 64, subsample=True),
+            ResNetBlockDec(64, 64, subsample=False)
         )
 
         self.layer_1 = nn.Sequential(
-            ResNetBlockDec(64, 64, subsample=False),
-            ResNetBlockDec(64, 32, subsample=True)
-        )
-
-        self.layer_0 = nn.Sequential(
-            ResNetBlockDec(32, 32, subsample=False),
+            ResNetBlockDec(64, 32, subsample=True),
             ResNetBlockDec(32, 32, subsample=False)
         )
 
@@ -54,7 +49,6 @@ class ResNetDecoder(nn.Module):
         x = self.layer_3(x)
         x = self.layer_2(x)
         x = self.layer_1(x)
-        x = self.layer_0(x)
         x = self.last_conv(x)
         return x
 

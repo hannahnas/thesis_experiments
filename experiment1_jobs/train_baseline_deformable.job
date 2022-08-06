@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#SBATCH -p gpu_shared
+#SBATCH --gpus=1
+#SBATCH --cpus-per-task=5
+#SBATCH --job-name=MaskedRGB
+#SBATCH --ntasks=1
+#SBATCH --time=08:00:00
+#SBATCH --output=job_files/experiment1/baseline_deform_%A.out
+
+module purge
+module load 2021
+module load Anaconda3/2021.05
+
+source activate inpaint_env
+
+python ../train.py 'hyper_params/experiment1/baseline_deformable.yml' 0 10

@@ -6,28 +6,18 @@ import pickle
 if __name__ == "__main__":
     split = 'val'
     baseline = [
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/Baseline_batch8_lr0.0001_3.pickle',
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/Baseline_batch8_lr0.0001_4.pickle',
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/Baseline_batch8_lr0.0001_5.pickle'
     ]
 
     gated_baseline = [
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/GatedBaseline_batch8_lr0.0001_3.pickle',
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/GatedBaseline_batch8_lr0.0001_4.pickle',
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/GatedBaseline_batch8_lr0.0001_5.pickle',
-        # '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/GatedBaseline_batch4_lr0.0001_6.pickle'
+
     ]
 
     deformable_baseline = [
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/DeformableBaseline_batch8_lr0.0001_3.pickle',
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/DeformableBaseline_batch8_lr0.0001_4.pickle',
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/DeformableBaseline_batch8_lr0.0001_7.pickle'
+
     ]
 
     gateddeformable_baseline = [
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/GatedDeformableBaseline_batch8_lr0.0001_5.pickle',
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/GatedDeformableBaseline_batch8_lr0.0001_3.pickle',
-        '/home/hannah/Documents/Thesis/EdgeBasedInpainting/results/lisa_results/GatedDeformableBaseline_batch8_lr0.0001_6.pickle'
+        
     ]
 
     scores = ['abs rel', 'sq rel', 'rmse', 'rmse log', 'delta 1.25', 'delta 1.25^2', 'delta 1.25^3']
