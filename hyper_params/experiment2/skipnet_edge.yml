@@ -5,10 +5,11 @@ parameters:
     model name: "SkipNetWithEdges"
     model class: "SkipNetModel"
     encoder type: "gated"
+    single encoder: False
 
     use edges: True
 
     batch size: 8
     lr: 0.0001
     monitor: "val_l1_depth_loss"
-    epochs: 7
+    epochs: 12

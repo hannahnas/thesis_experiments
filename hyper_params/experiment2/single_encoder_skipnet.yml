@@ -2,10 +2,10 @@ project: Thesis
 name: Skipnet baseline
 
 parameters:
-    model name: "SkipNet"
+    model name: "SingleEncoderSkipNet"
     model class: "SkipNetModel"
     encoder type: "gated"
-    single encoder: False
+    single encoder: True
 
     use edges: False
 

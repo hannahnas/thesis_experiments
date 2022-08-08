@@ -2,7 +2,7 @@ import torch
 import pytorch_lightning as pl
 from torch import optim
 import torch.nn.functional as F
-from depth_models.skipnet.skipnet import SkipNet
+from depth_models.skipnet.skipnet import SkipNet, SingleEncoderSkipNet
 from modules.evaluation import compute_eval_measures
 from modules.criterions import L1_loss
 
@@ -12,18 +12,17 @@ class SkipNetModel(pl.LightningModule):
         super().__init__()
 
         self.hyper_params = hyper_params
-        self.model = SkipNet(hyper_params)
+        if hyper_params['single encoder']:
+            self.model = SingleEncoderSkipNet(hyper_params)
+        else:
+            self.model = SkipNet(hyper_params)
+
         self.use_edges = hyper_params['use edges']
 
 
     def forward(self, batch):
-        rgb = batch['rgb']
-        masked_depth = (1 - batch['mask']) * batch['depth']
-        if self.use_edges:
-            edges = batch['edges']
-            masked_depth = torch.cat([masked_depth, edges], dim=1)
 
-        pred = self.model(rgb, masked_depth)
+        pred = self.model(batch)
 
         return pred
     

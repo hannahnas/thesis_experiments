@@ -2,12 +2,11 @@ project: Thesis
 name: Skipnet baseline
 
 parameters:
-    model name: "SkipNet"
-    model class: "SkipNetModel"
+    model name: "SingleEncoderSkipNetWithEdge"
+    model class: "SingleEncoderSkipNetModel"
     encoder type: "gated"
-    single encoder: False
 
-    use edges: False
+    use edges: True
 
     batch size: 8
     lr: 0.0001

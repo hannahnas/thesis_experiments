@@ -3,6 +3,8 @@ checkpoints/
 
 results/
 
+LISA_checkpoints/
+
 *.pyc
 *.out
 *.swp
