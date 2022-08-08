@@ -18,6 +18,7 @@ if __name__ == "__main__":
 
     hyper_params['run id'] = RUN_ID
     hyper_params['experiment id'] = EXPERIMENT_ID
+    hyper_params['batch size'] = 8
     pprint(hyper_params)
     
     run_experiment(hyper_params)

@@ -2,3 +2,7 @@
 checkpoints/
 
 results/
+
+*.pyc
+*.out
+*.swp

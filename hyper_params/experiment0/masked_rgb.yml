@@ -4,11 +4,11 @@ name: Single encoder
 parameters:
     model name: "DualEncoderInitialModel"
     model class: "InitialModel"
-    encoder type: "gated"
+    encoder type: "base"
 
     rgb input: 'dualencoder'
 
-    batch size: 4
+    batch size: 8
     lr: 0.0001
     monitor: "val_l1_depth_loss"
     epochs: 5

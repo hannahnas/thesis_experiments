@@ -50,7 +50,8 @@ def run_experiment(hyper_params):
     early_stopping = EarlyStopping(monitor=hyper_params["monitor"], mode='min', patience=5)
 
     model_path = f"{hyper_params['model name']}_batch{hyper_params['batch size']}_{hyper_params['run id']}"
-    path = os.path.join(CHECKPOINT_PATH, model_path)
+    checkpoint_path = CHECKPOINT_PATH + f"/experiment{hyper_params['experiment id']}"
+    path = os.path.join(checkpoint_path, model_path)
     trainer = pl.Trainer(default_root_dir=path,
                          val_check_interval=0.25,
                          gpus=1 if str(device).startswith("cuda") else 0,

@@ -40,7 +40,6 @@ class BaselineModel(pl.LightningModule):
         depth_pred = self.forward(batch)
         l1_loss = L1_loss(depth_pred, depth_gt, mask)
 
-        self.log('train_l1_loss', l1_loss)
         return l1_loss
    
     def configure_optimizers(self):

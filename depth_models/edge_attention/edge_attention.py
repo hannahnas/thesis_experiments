@@ -16,14 +16,14 @@ class EdgeAttention(nn.Module):
         self.depth_encoder = ResNetEncoder(in_channels=1, type=self.hyper_params['encoder type'])
 
         self.to_hidden = nn.Sequential(
-            nn.Conv2d(512, 64, kernel_size=3, padding=1),
-            nn.BatchNorm2d(64),
+            nn.Conv2d(512, 128, kernel_size=3, padding=1),
+            nn.BatchNorm2d(128),
             nn.ReLU(inplace=True)
         )
 
-        self.attn1 = EdgeAttentionModule(64, 32)
-        self.attn2 = EdgeAttentionModule(32, 16)
-        self.attn3 = EdgeAttentionModule(16, 16)
+        self.attn1 = EdgeAttentionModule(128, 64)
+        self.attn2 = EdgeAttentionModule(64, 32)
+        self.attn3 = EdgeAttentionModule(32, 16)
 
         self.conv_feat = nn.Conv2d(16, 1, kernel_size=3, padding=1)
         self.conv_edge = nn.Conv2d(16, 1, kernel_size=3, padding=1)
@@ -61,13 +61,13 @@ class EdgeAttentionModule(nn.Module):
         super().__init__()
 
         self.dec_block = nn.Sequential(
-            ResNetBlockDec(in_channels, in_channels, subsample=False),
-            ResNetBlockDec(in_channels, out_channels, subsample=True)
+            ResNetBlockDec(in_channels, out_channels, subsample=True),
+            ResNetBlockDec(out_channels, out_channels, subsample=False)
         )
 
         self.edge_block = nn.Sequential(
-            ResNetBlockDec(in_channels, in_channels, subsample=False),
-            ResNetBlockDec(in_channels, out_channels, subsample=True)
+            ResNetBlockDec(in_channels, out_channels, subsample=True),
+            ResNetBlockDec(out_channels, out_channels, subsample=False)
         )
         
 
