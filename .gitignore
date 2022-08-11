@@ -8,3 +8,7 @@ LISA_checkpoints/
 *.pyc
 *.out
 *.swp
+
+grad_cam_images/
+
+local_checkpoints/

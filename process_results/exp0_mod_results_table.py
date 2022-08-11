@@ -49,7 +49,7 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment0/DualEncoderInitialModel_batch8_24.pickle'
     ]
 
-    model_index = ['depth to depth', 'channelwise', 'dual encoder']
+    model_index = ['depth only', 'single encoder', 'dual encoder']
     results_paths = [depth2depth, channelwise, dual_encoder]
 
     create_table(model_index, results_paths)

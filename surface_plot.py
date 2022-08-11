@@ -90,11 +90,14 @@ def plot_3D(gt, pred):
     vis2.destroy_window()
 
 model2results_path = {
-    'SkipNet': '/home/hannah/Documents/Thesis/thesis_experiments/results/SkipNet_batch8_lr0.0001_10.pickle',
-    'SkipAttention': '/home/hannah/Documents/Thesis/thesis_experiments/results/GatedSkipAttention_batch8_lr0.0001_10.pickle',
-    'MultiScaleSkipAttention': '/home/hannah/Documents/Thesis/thesis_experiments/results/MultiScaleSkipAttention_batch8_lr0.0001_10.pickle',
-    'MultiScaleSkipAttentionSmooth': '/home/hannah/Documents/Thesis/thesis_experiments/results/MultiScaleSkipAttentionWithSmoothness_batch8_lr0.0001_10.pickle',
-    'EdgeAttention': '/home/hannah/Documents/Thesis/thesis_experiments/results/EdgeAttentionModel_batch8_lr0.0001_10.pickle'
+    'SingleEncoderSkipnet': '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNet_batch8_20.pickle',
+    'DualEncoderSkipnet': '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_20.pickle',
+    'SingleEncoderSkipnetEdge': '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNetWithEdge_batch8_20.pickle',
+    'DualEncoderSkipnetEdge': '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_20.pickle',
+    # 'SkipAttention': '',
+    # 'MultiScaleSkipAttention': '',
+    # 'MultiScaleSkipAttentionSmooth': '',
+    'EdgeAttention': '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_20.pickle'
 }
 
 modelname2class = {
@@ -106,9 +109,15 @@ modelname2class = {
 
 if __name__ == "__main__":
     # Choose a model from:
-    # evaluate = 'SkipNet'
+    # evaluate = 'SingleEncoderSkipnet'
+    # evaluate = 'DualEncoderSkipnet'
+    # evaluate = 'SingleEncoderSkipnetEdge'
+    # evaluate = 'DualEncoderSkipnetEdge'
+    evaluate = 'EdgeAttention'
+
+
     # evaluate = 'EdgeAttention'
-    evaluate = 'SkipAttention'
+    # evaluate = 'SkipAttention'
     # evaluate = 'MultiScaleSkipAttention'
     # evaluate = 'MultiScaleSkipAttentionSmooth'
 

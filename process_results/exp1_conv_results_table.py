@@ -44,11 +44,18 @@ if __name__ == "__main__":
     ]
 
     deformable_baseline = [
-
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_20.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_21.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_22.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_23.pickle'
     ]
 
     gateddeformable_baseline = [
-        
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_20.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_21.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_22.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_23.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_24.pickle'
     ]
 
     model_index = ['regular', 'deformable', 'gated', 'gated+deformable']
