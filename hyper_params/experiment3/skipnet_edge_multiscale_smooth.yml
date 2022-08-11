@@ -1,0 +1,19 @@
+project: Thesis
+name: Skip Attention
+
+parameters:
+    model name: 'DualEncoderSkipnetEdgeWithMultiscaleSmoothness'
+    model class: 'SkipNetModel'
+    encoder type: 'gated'
+    single encoder: False
+    use edges: True
+
+    multiscale: True
+    smoothness loss: True
+    lambda l1: 0.9
+    lambda smooth: 0.1
+    
+    batch size: 8
+    lr: 0.0001
+    monitor: 'val_l1_full'
+    epochs: 12

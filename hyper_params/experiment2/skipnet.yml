@@ -8,6 +8,8 @@ parameters:
     single encoder: False
 
     use edges: False
+    multiscale: False
+    smoothness loss: False
 
     batch size: 8
     lr: 0.0001

@@ -7,6 +7,7 @@ class SkipNet(nn.Module):
     def __init__(self, hyper_params):
         super().__init__()
         self.use_edges = hyper_params['use edges']
+        self.multiscale = hyper_params['multiscale']
         self.rgb_encoder = SkipEncoder(in_channels=3, type=hyper_params['encoder type'])
         
         if hyper_params['use edges']:
@@ -41,6 +42,10 @@ class SkipNet(nn.Module):
         )
 
         self.dec_layer_0 = nn.Conv2d(32, out_channels, 3, padding=1)
+
+        if self.multiscale:
+            self.scale_64 = nn.Conv2d(128, 1, kernel_size=3, padding=1)
+            self.scale_128 = nn.Conv2d(64, 1, kernel_size=3, padding=1)
 
 
     def _init_params(self):
@@ -78,12 +83,20 @@ class SkipNet(nn.Module):
 
         depth_pred = self.dec_layer_0(dec_x0)
 
+        if self.multiscale:
+            out_64 = self.scale_64(skip_dec_x2)
+            out_128 = self.scale_128(skip_dec_x1)
+            out_256 = depth_pred
+
+            return out_64, out_128, out_256
+
         return depth_pred
 
 class SingleEncoderSkipNet(nn.Module):
     def __init__(self, hyper_params):
         super().__init__()
         self.use_edges = hyper_params['use edges']
+        self.multiscale = hyper_params['multiscale']
         self.single_encoder = SkipEncoder(in_channels=4, type=hyper_params['encoder type'])
         
         if hyper_params['use edges']:
@@ -116,6 +129,10 @@ class SingleEncoderSkipNet(nn.Module):
         )
 
         self.dec_layer_0 = nn.Conv2d(32, out_channels, 3, padding=1)
+
+        if self.multiscale:
+            self.scale_64 = nn.Conv2d(128, 1, kernel_size=3, padding=1)
+            self.scale_128 = nn.Conv2d(64, 1, kernel_size=3, padding=1)
 
 
     def _init_params(self):
@@ -150,5 +167,12 @@ class SingleEncoderSkipNet(nn.Module):
         dec_x0 = self.dec_layer_1(skip_dec_x1)
 
         depth_pred = self.dec_layer_0(dec_x0)
+
+        if self.multiscale:
+            out_64 = self.scale_64(skip_dec_x2)
+            out_128 = self.scale_128(skip_dec_x1)
+            out_256 = depth_pred
+
+            return out_64, out_128, out_256
 
         return depth_pred
