@@ -8,6 +8,8 @@ parameters:
 
     multiscale: False
     smoothness loss: True
+    lambda l1: 0.9
+    lambda smooth: 0.1
     
     batch size: 8
     lr: 0.0001

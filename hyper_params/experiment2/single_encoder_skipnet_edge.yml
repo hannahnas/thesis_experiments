@@ -3,9 +3,9 @@ name: Skipnet baseline
 
 parameters:
     model name: "SingleEncoderSkipNetWithEdge"
-    model class: "SingleEncoderSkipNetModel"
+    model class: "SkipNetModel"
     encoder type: "gated"
-
+    single encoder: True
     use edges: True
 
     batch size: 8
