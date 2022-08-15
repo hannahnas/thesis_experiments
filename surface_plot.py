@@ -94,9 +94,8 @@ model2results_path = {
     'DualEncoderSkipnet': '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_20.pickle',
     'SingleEncoderSkipnetEdge': '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNetWithEdge_batch8_20.pickle',
     'DualEncoderSkipnetEdge': '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_20.pickle',
-    # 'SkipAttention': '',
-    # 'MultiScaleSkipAttention': '',
-    # 'MultiScaleSkipAttentionSmooth': '',
+    'SkipAttention': '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_30.pickle',
+    'SkipAttentionSmooth': '',
     'EdgeAttention': '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_20.pickle'
 }
 
@@ -112,20 +111,19 @@ if __name__ == "__main__":
     # evaluate = 'SingleEncoderSkipnet'
     # evaluate = 'DualEncoderSkipnet'
     # evaluate = 'SingleEncoderSkipnetEdge'
-    # evaluate = 'DualEncoderSkipnetEdge'
-    evaluate = 'EdgeAttention'
+    evaluate = 'DualEncoderSkipnetEdge'
+    # evaluate = 'EdgeAttention'
 
 
     # evaluate = 'EdgeAttention'
     # evaluate = 'SkipAttention'
-    # evaluate = 'MultiScaleSkipAttention'
-    # evaluate = 'MultiScaleSkipAttentionSmooth'
+    # evaluate = 'SkipAttentionSmooth'
 
-    # Choose image: 0, 1, 2, 3
+    # Choose image: 0, 1, 2, 3, 4
     # index = 2 # flat surface
     # index = 1 # complicated scene
     # index = 0
-    index = 0
+    index = 1
 
     results_path = model2results_path[evaluate]
     file = open(results_path, 'rb')
@@ -133,9 +131,15 @@ if __name__ == "__main__":
     print(results['model_path'])
     model_class = modelname2class[results['hyper_params']['model class']]
 
-    model = model_class.load_from_checkpoint(results['model_path'], hyper_params=results['hyper_params'])
+    params = results['hyper_params']
+    if 'multiscale' not in params.keys():
+        params['multiscale'] = False
+    if 'smoothness loss' not in params.keys():
+        params['smoothness loss'] = False
 
-    samples = ['032988', '040878', '106194', '066096']
+    model = model_class.load_from_checkpoint(results['model_path'], hyper_params=params)
+
+    samples = ['032988', '040878', '106194', '066096', '000462']
     sample_path = '/home/hannah/Documents/Thesis/val_sample/'
     
     # mask = generate_mask(248)
@@ -152,8 +156,9 @@ if __name__ == "__main__":
         'mask': torch.Tensor(mask).unsqueeze(0).unsqueeze(0),
         'edges': torch.Tensor(edge).unsqueeze(0).unsqueeze(0)
     }
-
-    depth_pred = model(batch)
+    with torch.no_grad():
+        depth_pred = model(batch)
+    
 
     if results['hyper_params']['model name'] == 'EdgeAttentionModel':
         depth_pred, _ = depth_pred
@@ -162,6 +167,9 @@ if __name__ == "__main__":
 
     completed_depth = batch['depth'] * (1 - batch['mask']) + depth_pred * batch['mask']
     completed_depth = completed_depth.cpu().detach().numpy()[0, 0]
+    # plt.imshow(completed_depth, cmap='viridis')
+    # plt.axis('off')
+    # plt.show()
 
     gt = get_geometry(rgb, depth, mask)
     pred = get_geometry(rgb, completed_depth, mask)

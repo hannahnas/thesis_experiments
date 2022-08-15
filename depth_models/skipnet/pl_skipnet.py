@@ -3,6 +3,7 @@ import pytorch_lightning as pl
 from torch import optim
 import torch.nn.functional as F
 from depth_models.skipnet.skipnet import SkipNet, SingleEncoderSkipNet
+from depth_models.skipnet.skipnet_rgb_with_edge import SkipNetRGBwithEdge
 from modules.evaluation import compute_eval_measures
 from modules.criterions import L1_loss, single_disp_smoothness
 
@@ -14,6 +15,8 @@ class SkipNetModel(pl.LightningModule):
         self.hyper_params = hyper_params
         self.multiscale = hyper_params['multiscale']
         self.smoothness_loss = hyper_params['smoothness loss']
+        if hyper_params['concat rgb']:
+            self.model = SkipNetRGBwithEdge(hyper_params)
         if hyper_params['single encoder']:
             self.model = SingleEncoderSkipNet(hyper_params)
         else:
