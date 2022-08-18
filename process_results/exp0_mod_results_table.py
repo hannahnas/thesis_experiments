@@ -13,7 +13,6 @@ def create_table(model_index, results_paths, split='val'):
             file = open(p, 'rb')
             results = pickle.load(file)
             n_steps = results['model_path'].split('step=')[1][:5]
-            print(results['model_path'])
             convergence_steps.append(int(n_steps))
             result_dicts.append(results)
 
