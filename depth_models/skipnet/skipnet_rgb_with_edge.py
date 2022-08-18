@@ -42,8 +42,8 @@ class SkipNetRGBwithEdge(nn.Module):
         self.dec_layer_0 = nn.Conv2d(32, out_channels, 3, padding=1)
 
         if self.multiscale:
-            self.scale_64 = nn.Conv2d(128, 1, kernel_size=3, padding=1)
-            self.scale_128 = nn.Conv2d(64, 1, kernel_size=3, padding=1)
+            self.scale_64 = nn.Conv2d(128, 1, kernel_size=1, padding=0)
+            self.scale_128 = nn.Conv2d(64, 1, kernel_size=1, padding=0)
 
 
     def _init_params(self):
