@@ -29,12 +29,19 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNetWithEdge_batch8_24.pickle'
     ]
 
-    skipnet_dual_enc_edge = [
+    skipnet_dual_enc_depthedge = [
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_20.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_21.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_22.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_23.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_24.pickle'
+    ]
+
+    skipnet_dual_enc_rgbedge = [
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_20.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_22.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_23.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_24.pickle',
     ]
 
     edgeattention = [
@@ -55,8 +62,8 @@ if __name__ == "__main__":
 
     scores = ['abs rel', 'sq rel', 'rmse', 'rmse log', 'delta 1.25', 'delta 1.25^2', 'delta 1.25^3']
     subset_scores = ['abs rel', 'rmse', 'delta 1.25', 'delta 1.25^2', 'delta 1.25^3']
-    index = ['Single Encoder Skipnet', 'Dual Encoder Skipnet', 'Single Encoder Skipnet with edge', 'Dual Encoder Skipnet with edge', 'Edge Attention', 'Skip Attention']
-    results_paths = [skipnet_single_enc, skipnet_dual_enc, skipnet_single_enc_edge, skipnet_dual_enc_edge, edgeattention, skipattention]
+    index = ['Single Encoder Skipnet', 'Dual Encoder Skipnet', 'Single Encoder Skipnet with edge', 'Dual Encoder Skipnet depth with edge', 'Dual Encoder Skipnet rgb with edge', 'Edge Attention', 'Skip Attention']
+    results_paths = [skipnet_single_enc, skipnet_dual_enc, skipnet_single_enc_edge, skipnet_dual_enc_depthedge, skipnet_dual_enc_rgbedge, edgeattention, skipattention]
 
     results_table = pd.DataFrame(columns=subset_scores, index=index)
     for (i, paths) in zip(index, results_paths):

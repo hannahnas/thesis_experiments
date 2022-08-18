@@ -8,9 +8,12 @@ def create_table(model_index, results_paths, split='val'):
     results_table = pd.DataFrame(columns=subset_scores, index=model_index)
     for (i, paths) in zip(model_index, results_paths):
         result_dicts = []
+        convergence_steps = []
         for p in paths:
             file = open(p, 'rb')
             results = pickle.load(file)
+            n_steps = results['model_path'].split('step=')[1][:5]
+            convergence_steps.append(int(n_steps))
             result_dicts.append(results)
 
         for s in subset_scores:
@@ -20,9 +23,10 @@ def create_table(model_index, results_paths, split='val'):
             std = np.std(values).round(4)
             results_table.at[i, s] = f'{mean} ({std})'
             results_table.at[i, 'runs'] = len(values)
+        results_table.at[i, 'avg #steps until convergence'] = np.mean(convergence_steps)
     print(f'{split} scores')
     print(results_table)
-    print(results_table.to_latex())
+    # print(results_table.to_latex())
 
 if __name__ == "__main__":
     split = 'val'
