@@ -15,5 +15,5 @@ module load Anaconda3/2021.05
 source activate inpaint_env
 
 cd ..
-python train.py 'hyper_params/experiment0/single_encoder.yml' 0 24
+python train.py 'hyper_params/experiment0/single_encoder.yml' 0 29
 

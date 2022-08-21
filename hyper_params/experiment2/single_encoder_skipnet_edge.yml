@@ -7,6 +7,9 @@ parameters:
     encoder type: "gated"
     single encoder: True
     use edges: True
+    smoothness loss: False
+    multiscale: False
+    concat rgb: False
 
     batch size: 8
     lr: 0.0001

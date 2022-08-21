@@ -15,5 +15,5 @@ module load Anaconda3/2021.05
 source activate inpaint_env
 
 cd ..
-python train.py 'hyper_params/experiment1/baseline_gated.yml' 1 24
+python train.py 'hyper_params/experiment1/baseline_gated.yml' 1 29
 

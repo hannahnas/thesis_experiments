@@ -5,8 +5,8 @@
 #SBATCH --cpus-per-task=5
 #SBATCH --job-name=DeformableBaseline
 #SBATCH --ntasks=1
-#SBATCH --time=12:00:00
-#SBATCH --output=baseline_deform_%A.out
+#SBATCH --time=20:00:00
+#SBATCH --output=baseline_deform_epochs10_%A.out
 
 module purge
 module load 2021
@@ -15,4 +15,4 @@ module load Anaconda3/2021.05
 source activate inpaint_env
 
 cd ..
-python train.py 'hyper_params/experiment1/baseline_deformable.yml' 1 24
+python train.py 'hyper_params/experiment1/baseline_deformable.yml' 1 49

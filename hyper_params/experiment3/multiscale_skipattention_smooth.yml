@@ -2,7 +2,7 @@ project: Thesis
 name: Skip Attention
 
 parameters:
-    model name: 'MultiScaleSkipAttentionWithSmoothness'
+    model name: 'MultiScale1x1SkipAttentionWithSmoothness'
     model class: 'SkipAttentionModel'
     encoder type: 'gated'
 

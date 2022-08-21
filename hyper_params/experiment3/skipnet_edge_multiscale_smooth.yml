@@ -2,11 +2,12 @@ project: Thesis
 name: Skip Attention
 
 parameters:
-    model name: 'DualEncoderSkipnetEdgeWithMultiscaleSmoothness'
+    model name: 'DualEncoderSkipnetEdgeWith1x1MultiscaleSmoothness'
     model class: 'SkipNetModel'
     encoder type: 'gated'
     single encoder: False
     use edges: True
+    concat rgb: False
 
     multiscale: True
     smoothness loss: True

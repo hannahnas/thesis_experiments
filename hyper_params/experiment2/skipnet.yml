@@ -8,6 +8,7 @@ parameters:
     single encoder: False
 
     use edges: False
+    concat rgb: False
     multiscale: False
     smoothness loss: False
 

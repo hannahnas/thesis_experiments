@@ -6,6 +6,9 @@ parameters:
     model class: "SkipNetModel"
     encoder type: "gated"
     single encoder: True
+    multiscale: False
+    smoothness loss: False
+    concat rgb: False
 
     use edges: False
 

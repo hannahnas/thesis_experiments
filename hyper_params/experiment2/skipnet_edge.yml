@@ -9,6 +9,7 @@ parameters:
 
     use edges: True
     multiscale: False
+    concat rgb: False
     smoothness loss: False
 
     batch size: 8

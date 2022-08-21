@@ -14,5 +14,5 @@ module load Anaconda3/2021.05
 
 source activate inpaint_env
 cd ..
-python train.py 'hyper_params/experiment3/skipattention_smooth.yml' 3 24 
+python train.py 'hyper_params/experiment3/skipattention_smooth.yml' 3 29 
 

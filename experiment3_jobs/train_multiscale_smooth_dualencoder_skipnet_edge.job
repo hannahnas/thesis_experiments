@@ -3,10 +3,10 @@
 #SBATCH -p gpu_shared
 #SBATCH --gpus=1
 #SBATCH --cpus-per-task=5
-#SBATCH --job-name=MultiscaleSmoothDualEncSkipnetEdge
+#SBATCH --job-name=Multiscale1x1SmoothDualEncSkipnetEdge
 #SBATCH --ntasks=1
 #SBATCH --time=12:00:00
-#SBATCH --output=multiscale_smooth_dualencoder_skipnet_edge_%A.out
+#SBATCH --output=multiscale1x1_smooth_dualencoder_skipnet_edge_%A.out
 
 module purge
 module load 2021
@@ -14,5 +14,5 @@ module load Anaconda3/2021.05
 
 source activate inpaint_env
 cd ..
-python train.py 'hyper_params/experiment3/skipnet_edge_multiscale_smooth.yml' 3 24
+python train.py 'hyper_params/experiment3/skipnet_edge_multiscale_smooth.yml' 3 59
 
