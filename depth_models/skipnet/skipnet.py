@@ -9,6 +9,11 @@ class SkipNet(nn.Module):
         self.use_edges = hyper_params['use edges']
         self.multiscale = hyper_params['multiscale']
         self.rgb_encoder = SkipEncoder(in_channels=3, type=hyper_params['encoder type'])
+        if 'masked rgb' in hyper_params.keys():
+            if hyper_params['masked rgb'] == True:
+                self.mask_rgb = True
+        else:
+            self.mask_rgb = False
         
         if hyper_params['use edges']:
             self.depth_encoder = SkipEncoder(in_channels=2, type=hyper_params['encoder type'])
@@ -59,6 +64,9 @@ class SkipNet(nn.Module):
 
     def forward(self, batch):
         rgb = batch['rgb']
+        if self.mask_rgb:
+            rgb = (1 - batch['mask']) * rgb
+        
         masked_depth = (1 - batch['mask']) * batch['depth']
         if self.use_edges:
             edges = batch['edges']
@@ -101,6 +109,12 @@ class SingleEncoderSkipNet(nn.Module):
         
         if hyper_params['use edges']:
             self.single_encoder = SkipEncoder(in_channels=5, type=hyper_params['encoder type'])
+
+        if 'masked rgb' in hyper_params.keys():
+            if hyper_params['masked rgb'] == True:
+                self.mask_rgb = True
+        else:
+            self.mask_rgb = False
 
         self._create_network(out_channels=1)
         self._init_params()
@@ -146,6 +160,9 @@ class SingleEncoderSkipNet(nn.Module):
 
     def forward(self, batch):
         rgb = batch['rgb']
+        if self.mask_rgb:
+            rgb = (1 - batch['mask']) * rgb
+
         masked_depth = (1 - batch['mask']) * batch['depth']
         feat_in = torch.cat([rgb, masked_depth], dim=1)
         if self.use_edges:
