@@ -5,8 +5,8 @@
 #SBATCH --cpus-per-task=5
 #SBATCH --job-name=BaselineGatedeform
 #SBATCH --ntasks=1
-#SBATCH --time=16:00:00
-#SBATCH --output=baseline_gateddeform_%A.out
+#SBATCH --time=24:00:00
+#SBATCH --output=baseline_gateddeform_10ep_%A.out
 
 module purge
 module load 2021
@@ -15,4 +15,4 @@ module load Anaconda3/2021.05
 source activate inpaint_env
 
 cd ..
-python train.py 'hyper_params/experiment1/baseline_gateddeformable.yml' 1 24
+python train.py 'hyper_params/experiment1/baseline_gateddeformable.yml' 1 49

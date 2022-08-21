@@ -15,5 +15,5 @@ module load Anaconda3/2021.05
 source activate inpaint_env
 
 cd ..
-python train.py 'hyper_params/experiment2/skipnet_rgb_edges.yml' 2 24
+python train.py 'hyper_params/experiment2/skipnet_rgb_edges.yml' 2 21
 

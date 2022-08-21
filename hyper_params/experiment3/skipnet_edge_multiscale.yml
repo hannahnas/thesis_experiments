@@ -7,6 +7,7 @@ parameters:
     encoder type: 'gated'
     use edges: True
     single encoder: False
+    concat rgb: False
 
     multiscale: True
     smoothness loss: False

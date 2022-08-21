@@ -15,4 +15,4 @@ module load Anaconda3/2021.05
 source activate inpaint_env
 
 cd ..
-python train.py 'hyper_params/experiment0/masked_rgb.yml' 0 24
+python train.py 'hyper_params/experiment0/masked_rgb.yml' 0 29
