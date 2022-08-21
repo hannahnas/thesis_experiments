@@ -94,7 +94,7 @@ modelname2class = {
     'SkipAttentionModel': SkipAttentionModel,   
 }
 
-evaluate = 'DualEncoderSkipnet'
+evaluate = 'DualEncoderSkipnetEdge'
 results_path = model2results_path[evaluate]
 file = open(results_path, 'rb')
 results = pickle.load(file)
@@ -104,6 +104,8 @@ if 'multiscale' not in params.keys():
     params['multiscale'] = False
 if 'smoothness loss' not in params.keys():
     params['smoothness loss'] = False
+if 'concat rgb' not in params.keys():
+    params['concat rgb'] = False
 
 
 model_class = modelname2class[results['hyper_params']['model class']]
@@ -179,51 +181,51 @@ if params['single encoder']:
         ax[3, i].axis('off')
     # print(model.model.single_encoder.layer_1[1].act_fn)
     
-    
-
 if params['single encoder'] == False:
     depth_visual = depth_3channel / depth_3channel.max()
-    fig, ax = plt.subplots(6, 4)
+    fig, ax = plt.subplots(3, 10, facecolor = (1, 1, 1))
+    # ax.set_facecolor('red')
+    [axi.set_axis_off() for axi in ax.ravel()]
 
-    ax[0, 0].set_title('input')
+    # ax[0, 0].set_title('input')
     ax[0, 0].imshow(rgb_np)
     ax[0, 0].axis('off')
 
-    ax[0, 1].imshow((1 - mask_np) * depth_np, cmap='viridis')
-    ax[0, 1].set_title('input')
-    ax[0, 1].axis('off')
+    ax[2, 0].imshow((1 - mask_np) * depth_np, cmap='viridis')
+    # ax[0, 2].set_title('input')
+    ax[2, 0].axis('off')
 
     completed_depth = batch['depth'] * (1 - batch['mask']) + depth_pred * batch['mask']
     completed_depth = completed_depth.cpu().numpy()[0, 0]
-    ax[0, 2].imshow(completed_depth, cmap='viridis')
-    ax[0, 2].set_title('prediction')
-    ax[0, 2].axis('off')
-    ax[0, 3].imshow(edge_np, cmap='gray')
-    ax[0, 3].axis('off')
+    ax[1, 9].imshow(completed_depth, cmap='viridis')
+    # ax[2, 9].set_title('prediction')
+    ax[2, 9].axis('off')
+    # ax[0, 3].imshow(edge_np, cmap='gray')
+    # ax[0, 3].axis('off')
 
     rgb_enc_0 = [model.model.rgb_encoder.layer_0[-1]]
     rgb_enc_1 = [model.model.rgb_encoder.layer_1[1].act_fn]
     rgb_enc_2 = [model.model.rgb_encoder.layer_2[1].act_fn]
     rgb_enc_3 = [model.model.rgb_encoder.layer_3[1].act_fn]
     rgb_encoder_layers = [rgb_enc_0, rgb_enc_1, rgb_enc_2, rgb_enc_3]
-    for i, layer in enumerate(rgb_encoder_layers):
+    for i, layer in enumerate(rgb_encoder_layers, 1):
         cam_img = get_cam_img(model, layer, input_tensor, rgb_np)
 
-        ax[1, i].set_title(f'RGB encoder activation {i}')
-        ax[1, i].imshow(cam_img)
-        ax[1, i].axis('off')
+        # ax[0, i].set_title(f'RGB encoder activation {i}')
+        ax[0, i].imshow(cam_img)
+        ax[0, i].axis('off')
 
-    rgb_enc_gate0 = [model.model.depth_encoder.layer_0[0].sigmoid]
-    rgb_enc_gate1 = [model.model.depth_encoder.layer_1[1].net[0].sigmoid]
-    rgb_enc_gate2 = [model.model.depth_encoder.layer_2[1].net[0].sigmoid]
-    rgb_enc_gate3 = [model.model.depth_encoder.layer_3[1].net[0].sigmoid]
-    rgb_gate_layers = [rgb_enc_gate0, rgb_enc_gate1, rgb_enc_gate2, rgb_enc_gate3]
-    for i, layer in enumerate(rgb_gate_layers):
-        cam_img = get_cam_img(model, layer, input_tensor, rgb_np)
+    # rgb_enc_gate0 = [model.model.depth_encoder.layer_0[0].sigmoid]
+    # rgb_enc_gate1 = [model.model.depth_encoder.layer_1[1].net[0].sigmoid]
+    # rgb_enc_gate2 = [model.model.depth_encoder.layer_2[1].net[0].sigmoid]
+    # rgb_enc_gate3 = [model.model.depth_encoder.layer_3[1].net[0].sigmoid]
+    # rgb_gate_layers = [rgb_enc_gate0, rgb_enc_gate1, rgb_enc_gate2, rgb_enc_gate3]
+    # for i, layer in enumerate(rgb_gate_layers):
+    #     cam_img = get_cam_img(model, layer, input_tensor, rgb_np)
 
-        ax[2, i].set_title(f'RGB encoder gate {i}')
-        ax[2, i].imshow(cam_img)
-        ax[2, i].axis('off')
+    #     ax[2, i].set_title(f'RGB encoder gate {i}')
+    #     ax[2, i].imshow(cam_img)
+    #     ax[2, i].axis('off')
 
     depth_enc_0 = [model.model.depth_encoder.layer_0[-1]]
     depth_enc_1 = [model.model.depth_encoder.layer_1[1].act_fn]
@@ -231,36 +233,119 @@ if params['single encoder'] == False:
     depth_enc_3 = [model.model.depth_encoder.layer_3[1].act_fn]
     depth_encoder_layers = [depth_enc_0, depth_enc_1, depth_enc_2, depth_enc_3]
     
-    for i, layer in enumerate(depth_encoder_layers):
+    for i, layer in enumerate(depth_encoder_layers, 1):
         cam_img = get_cam_img(model, layer, input_tensor, depth_visual)
 
-        ax[3, i].set_title(f'Depth encoder activation {i}')
-        ax[3, i].imshow(cam_img)
-        ax[3, i].axis('off')
+        # ax[3, i].set_title(f'Depth encoder activation {i}')
+        ax[2, i].imshow(cam_img)
+        ax[2, i].axis('off')
 
-    depth_enc_gate0 = [model.model.depth_encoder.layer_0[0].sigmoid]
-    depth_enc_gate1 = [model.model.depth_encoder.layer_1[1].net[0].sigmoid]
-    depth_enc_gate2 = [model.model.depth_encoder.layer_2[1].net[0].sigmoid]
-    depth_enc_gate3 = [model.model.depth_encoder.layer_3[1].net[0].sigmoid]
-    depth_gate_layers = [depth_enc_gate0, depth_enc_gate1, depth_enc_gate2, depth_enc_gate3]
+    # depth_enc_gate0 = [model.model.depth_encoder.layer_0[0].sigmoid]
+    # depth_enc_gate1 = [model.model.depth_encoder.layer_1[1].net[0].sigmoid]
+    # depth_enc_gate2 = [model.model.depth_encoder.layer_2[1].net[0].sigmoid]
+    # depth_enc_gate3 = [model.model.depth_encoder.layer_3[1].net[0].sigmoid]
+    # depth_gate_layers = [depth_enc_gate0, depth_enc_gate1, depth_enc_gate2, depth_enc_gate3]
     
-    for i, layer in enumerate(depth_gate_layers):
-        cam_img = get_cam_img(model, layer, input_tensor, depth_visual)
+    # for i, layer in enumerate(depth_gate_layers):
+    #     cam_img = get_cam_img(model, layer, input_tensor, depth_visual)
 
-        ax[4, i].set_title(f'Depth encoder gate {i}')
-        ax[4, i].imshow(cam_img)
-        ax[4, i].axis('off')
+    #     ax[4, i].set_title(f'Depth encoder gate {i}')
+    #     ax[4, i].imshow(cam_img)
+    #     ax[4, i].axis('off')
 
     red_feat = [model.model.reduce_features[-1]]
     dec_3 = [model.model.dec_layer_3[1].act_fn]
     dec_2 = [model.model.dec_layer_2[1].act_fn]
     dec_1 = [model.model.dec_layer_1[1].act_fn]
     decoder_layers = [red_feat, dec_3, dec_2, dec_3]
-    for i, layer in enumerate(decoder_layers):
+    for i, layer in enumerate(decoder_layers, 5):
         cam_img = get_cam_img(model, layer, input_tensor, rgb_np)
-        ax[5, i].set_title(f'Decoder activation {i}')
-        ax[5, i].imshow(cam_img)
-        ax[5, i].axis('off')
+        # ax[5, i].set_title(f'Decoder activation {i}')
+        ax[1, i].imshow(cam_img)
+        ax[1, i].axis('off')
+        ax[1, i].set_facecolor((.18, .31, .31))  
+
+
+# if params['single encoder'] == False:
+#     depth_visual = depth_3channel / depth_3channel.max()
+#     fig, ax = plt.subplots(6, 4)
+
+#     ax[0, 0].set_title('input')
+#     ax[0, 0].imshow(rgb_np)
+#     ax[0, 0].axis('off')
+
+#     ax[0, 1].imshow((1 - mask_np) * depth_np, cmap='viridis')
+#     ax[0, 1].set_title('input')
+#     ax[0, 1].axis('off')
+
+#     completed_depth = batch['depth'] * (1 - batch['mask']) + depth_pred * batch['mask']
+#     completed_depth = completed_depth.cpu().numpy()[0, 0]
+#     ax[0, 2].imshow(completed_depth, cmap='viridis')
+#     ax[0, 2].set_title('prediction')
+#     ax[0, 2].axis('off')
+#     ax[0, 3].imshow(edge_np, cmap='gray')
+#     ax[0, 3].axis('off')
+
+#     rgb_enc_0 = [model.model.rgb_encoder.layer_0[-1]]
+#     rgb_enc_1 = [model.model.rgb_encoder.layer_1[1].act_fn]
+#     rgb_enc_2 = [model.model.rgb_encoder.layer_2[1].act_fn]
+#     rgb_enc_3 = [model.model.rgb_encoder.layer_3[1].act_fn]
+#     rgb_encoder_layers = [rgb_enc_0, rgb_enc_1, rgb_enc_2, rgb_enc_3]
+#     for i, layer in enumerate(rgb_encoder_layers):
+#         cam_img = get_cam_img(model, layer, input_tensor, rgb_np)
+
+#         ax[1, i].set_title(f'RGB encoder activation {i}')
+#         ax[1, i].imshow(cam_img)
+#         ax[1, i].axis('off')
+
+#     rgb_enc_gate0 = [model.model.depth_encoder.layer_0[0].sigmoid]
+#     rgb_enc_gate1 = [model.model.depth_encoder.layer_1[1].net[0].sigmoid]
+#     rgb_enc_gate2 = [model.model.depth_encoder.layer_2[1].net[0].sigmoid]
+#     rgb_enc_gate3 = [model.model.depth_encoder.layer_3[1].net[0].sigmoid]
+#     rgb_gate_layers = [rgb_enc_gate0, rgb_enc_gate1, rgb_enc_gate2, rgb_enc_gate3]
+#     for i, layer in enumerate(rgb_gate_layers):
+#         cam_img = get_cam_img(model, layer, input_tensor, rgb_np)
+
+#         ax[2, i].set_title(f'RGB encoder gate {i}')
+#         ax[2, i].imshow(cam_img)
+#         ax[2, i].axis('off')
+
+#     depth_enc_0 = [model.model.depth_encoder.layer_0[-1]]
+#     depth_enc_1 = [model.model.depth_encoder.layer_1[1].act_fn]
+#     depth_enc_2 = [model.model.depth_encoder.layer_2[1].act_fn]
+#     depth_enc_3 = [model.model.depth_encoder.layer_3[1].act_fn]
+#     depth_encoder_layers = [depth_enc_0, depth_enc_1, depth_enc_2, depth_enc_3]
+    
+#     for i, layer in enumerate(depth_encoder_layers):
+#         cam_img = get_cam_img(model, layer, input_tensor, depth_visual)
+
+#         ax[3, i].set_title(f'Depth encoder activation {i}')
+#         ax[3, i].imshow(cam_img)
+#         ax[3, i].axis('off')
+
+#     depth_enc_gate0 = [model.model.depth_encoder.layer_0[0].sigmoid]
+#     depth_enc_gate1 = [model.model.depth_encoder.layer_1[1].net[0].sigmoid]
+#     depth_enc_gate2 = [model.model.depth_encoder.layer_2[1].net[0].sigmoid]
+#     depth_enc_gate3 = [model.model.depth_encoder.layer_3[1].net[0].sigmoid]
+#     depth_gate_layers = [depth_enc_gate0, depth_enc_gate1, depth_enc_gate2, depth_enc_gate3]
+    
+#     for i, layer in enumerate(depth_gate_layers):
+#         cam_img = get_cam_img(model, layer, input_tensor, depth_visual)
+
+#         ax[4, i].set_title(f'Depth encoder gate {i}')
+#         ax[4, i].imshow(cam_img)
+#         ax[4, i].axis('off')
+
+#     red_feat = [model.model.reduce_features[-1]]
+#     dec_3 = [model.model.dec_layer_3[1].act_fn]
+#     dec_2 = [model.model.dec_layer_2[1].act_fn]
+#     dec_1 = [model.model.dec_layer_1[1].act_fn]
+#     decoder_layers = [red_feat, dec_3, dec_2, dec_3]
+#     for i, layer in enumerate(decoder_layers):
+#         cam_img = get_cam_img(model, layer, input_tensor, rgb_np)
+#         ax[5, i].set_title(f'Decoder activation {i}')
+#         ax[5, i].imshow(cam_img)
+#         ax[5, i].axis('off')
 
 
 plt.tight_layout()

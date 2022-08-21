@@ -35,7 +35,12 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/Baseline_batch8_21.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/Baseline_batch8_22.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/Baseline_batch8_23.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/Baseline_batch8_24.pickle'
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/Baseline_batch8_24.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/Baseline_batch8_25.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/Baseline_batch8_26.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/Baseline_batch8_27.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/Baseline_batch8_28.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/Baseline_batch8_29.pickle'
     ]
 
     gated_baseline = [
@@ -43,8 +48,12 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedBaseline_batch8_21.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedBaseline_batch8_22.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedBaseline_batch8_23.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedBaseline_batch8_24.pickle'
-
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedBaseline_batch8_24.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedBaseline_batch8_25.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedBaseline_batch8_26.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedBaseline_batch8_27.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedBaseline_batch8_28.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedBaseline_batch8_29.pickle',
     ]
 
     deformable_baseline = [

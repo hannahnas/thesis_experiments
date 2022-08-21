@@ -10,7 +10,12 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNet_batch8_21.pickle',
         # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNet_batch8_22.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNet_batch8_23.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNet_batch8_20.pickle'
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNet_batch8_24.pickle',
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNet_batch8_25.pickle',
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNet_batch8_26.pickle',
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNet_batch8_27.pickle',
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNet_batch8_28.pickle',
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNet_batch8_29.pickle'
     ]
 
     skipnet_dual_enc = [
@@ -18,7 +23,12 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_21.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_22.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_23.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_24.pickle'
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_24.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_25.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_26.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_27.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_28.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNet_batch8_29.pickle'
     ]
     
     skipnet_single_enc_edge = [
@@ -26,7 +36,8 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNetWithEdge_batch8_21.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNetWithEdge_batch8_22.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNetWithEdge_batch8_23.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNetWithEdge_batch8_24.pickle'
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNetWithEdge_batch8_24.pickle',
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SingleEncoderSkipNetWithEdge_batch8_25.pickle',
     ]
 
     skipnet_dual_enc_depthedge = [
@@ -34,14 +45,25 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_21.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_22.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_23.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_24.pickle'
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_24.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_25.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_26.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_27.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_28.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithEdges_batch8_29.pickle'
     ]
 
     skipnet_dual_enc_rgbedge = [
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_20.pickle',
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_21.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_22.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_23.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_24.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_25.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_26.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_27.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_28.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/SkipNetWithRGBEdges_batch8_29.pickle'
     ]
 
     edgeattention = [
@@ -57,7 +79,12 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_31.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_32.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_33.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_34.pickle'
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_34.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_35.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_36.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_37.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_38.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_39.pickle'
     ]
 
     scores = ['abs rel', 'sq rel', 'rmse', 'rmse log', 'delta 1.25', 'delta 1.25^2', 'delta 1.25^3']
