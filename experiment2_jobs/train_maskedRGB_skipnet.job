@@ -3,10 +3,10 @@
 #SBATCH -p gpu_shared
 #SBATCH --gpus=1
 #SBATCH --cpus-per-task=5
-#SBATCH --job-name=EdgeAttention
+#SBATCH --job-name=MaskedRGBSkipNet
 #SBATCH --ntasks=1
-#SBATCH --time=14:00:00
-#SBATCH --output=edge_attention_pretrainBCE_%A.out
+#SBATCH --time=12:00:00
+#SBATCH --output=maskedRGB_skipnet_%A.out
 
 module purge
 module load 2021
@@ -15,4 +15,5 @@ module load Anaconda3/2021.05
 source activate inpaint_env
 
 cd ..
-python train.py 'hyper_params/experiment2/edge_attention.yml' 2 49
+python train.py 'hyper_params/experiment2/maskedrgb_skipnet.yml' 2 29
+

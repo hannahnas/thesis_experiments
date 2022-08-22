@@ -2,7 +2,7 @@ project: Thesis
 name: Skipnet baseline
 
 parameters:
-    model name: "MaskedRGBSkipNet"
+    model name: "MaskedRGBSingleEncoderSkipNet"
     model class: "SkipNetModel"
     encoder type: "gated"
     single encoder: True
