@@ -12,7 +12,8 @@ def create_table(model_index, results_paths, split='val'):
         for p in paths:
             file = open(p, 'rb')
             results = pickle.load(file)
-            n_steps = results['model_path'].split('step=')[1][:5]
+            n_steps = results['model_path'].split('step=')[1][:7]
+            n_steps = n_steps.split('.')[0]
             convergence_steps.append(int(n_steps))
             result_dicts.append(results)
 
@@ -56,19 +57,45 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedBaseline_batch8_29.pickle',
     ]
 
+    # deformable_baseline = [
+    #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_20.pickle',
+    #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_21.pickle',
+    #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_22.pickle',
+    #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_23.pickle'
+    # ]
+
     deformable_baseline = [
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline10epochs_batch8_40.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline10epochs_batch8_41.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline10epochs_batch8_42.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline10epochs_batch8_44.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline10epochs_batch8_46.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline10epochs_batch8_48.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline10epochs_batch8_49.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_20.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_21.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_22.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/DeformableBaseline_batch8_23.pickle'
     ]
 
+    # gateddeformable_baseline = [
+    #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_20.pickle',
+    #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_21.pickle',
+    #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_22.pickle',
+    #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_23.pickle',
+    #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_24.pickle'
+    # ]
+
     gateddeformable_baseline = [
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_20.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_21.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_22.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_23.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_24.pickle'
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_40.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_41.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_42.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_43.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_44.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_45.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_46.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_47.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_48.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment1/GatedDeformableBaseline_batch8_49.pickle',
     ]
 
     model_index = ['regular', 'deformable', 'gated', 'gated+deformable']

@@ -56,6 +56,11 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttentionSmooth_batch8_29.pickle',
     ]
 
+    skipattn_PLUS_smooth = [ 
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+Smoothness_batch8_50.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+Smoothness_batch8_51.pickle'
+    ]
+
     # skipattn_multi_scale = [
     #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScaleSkipAttention_batch8_20.pickle',
     #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScaleSkipAttention_batch8_21.pickle',
@@ -164,18 +169,28 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWith1x1MultiscaleSmoothness_batch8_59.pickle'
     ]
 
+    skipnet_edge_PLUS_smooth = [ 
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+Smoothness_batch8_50.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+Smoothness_batch8_51.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+Smoothness_batch8_52.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+Smoothness_batch8_53.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+Smoothness_batch8_54.pickle'
+    ]
+
     subset_scores = ['abs rel', 'rmse', 'delta 1.25', 'delta 1.25^2', 'delta 1.25^3']
     model_index = [
         'Skip Attention',
         # 'Skip Attention + ms', 
         'Skip Attention + ms 1x1',
         'Skip attention + smooth', 
+        'Skip Attention pos smooth',
         # 'Skip attention + ms + smooth', 
         'Skip Attention + ms 1x1 + smooth',
         'Skipnet (edge)', 
         # 'Skipnet (edge) + ms', 
         'Skipnet (edge) + ms 1x1',
         'Skipnet (edge) + smooth', 
+        'Skipnet edge pos smooth',
         # 'Skipnet (edge) + ms + smooth',
         'Skipnet (edge) + ms 1x1 + smooth'
         ]
@@ -185,12 +200,14 @@ if __name__ == "__main__":
         # skipattn_multi_scale, 
         skipattn_multiscale1x1,
         skipattn_smooth, 
+        skipattn_PLUS_smooth,
         # skipattn_multi_scale_smooth,
         skipattn_multiscale1x1_smooth,
         skipnet_edge,
         # skipnet_edge_ms,
         skipnet_edge_ms1x1,
         skipnet_edge_smooth,
+        skipnet_edge_PLUS_smooth,
         # skipnet_edge_ms_smooth,
         skipnet_edge_ms1x1_smooth
         ]

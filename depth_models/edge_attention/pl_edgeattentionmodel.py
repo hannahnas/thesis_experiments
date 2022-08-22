@@ -33,7 +33,10 @@ class EdgeAttentionModel(pl.LightningModule):
 
         depth_pred, edges_pred = self.forward(batch)
 
-        l1_loss = L1_loss(depth_pred, depth_gt, mask)
+        if self.current_epoch > 0:
+            l1_loss = L1_loss(depth_pred, depth_gt, mask)
+        else:
+            l1_loss = 0
         bce_loss = cross_entropy_loss2d(edges_pred, edges_gt)
 
         return l1_loss, bce_loss

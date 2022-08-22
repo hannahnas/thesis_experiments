@@ -78,6 +78,14 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_24.pickle'
     ]
 
+    edgeattention_pretrain = [
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_60.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_61.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_62.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_63.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_64.pickle'
+    ]
+
     skipattention = [
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_30.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/GatedSkipAttention_batch8_31.pickle',
@@ -126,10 +134,12 @@ if __name__ == "__main__":
         'Dual Encoder Skipnet depth with edge', 
         'Dual Encoder Skipnet rgb with edge', 
         'Edge Attention', 
+        'Edge Attention (pretrain bce)',
         'Skip Attention',
         'Masked RGB skipnet',
         'Masked RGB single encoder skipnet'
         ]
+        
     results_paths = [
         skipnet_single_enc, 
         skipnet_dual_enc, 
@@ -137,6 +147,7 @@ if __name__ == "__main__":
         skipnet_dual_enc_depthedge, 
         skipnet_dual_enc_rgbedge, 
         edgeattention, 
+        edgeattention_pretrain,
         skipattention,
         masked_rgb_skipnet,
         masked_rgb_single_encoder_skipnet
