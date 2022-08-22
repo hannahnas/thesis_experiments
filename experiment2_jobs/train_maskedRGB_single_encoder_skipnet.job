@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -p gpu_shared
+#SBATCH --gpus=1
+#SBATCH --cpus-per-task=5
+#SBATCH --job-name=MaskedRGBSingleEncSkipNet
+#SBATCH --ntasks=1
+#SBATCH --time=12:00:00
+#SBATCH --output=maskedRGB_single_enc_skipnet_%A.out
+
+module purge
+module load 2021
+module load Anaconda3/2021.05
+
+source activate inpaint_env
+
+cd ..
+python train.py 'hyper_params/experiment2/maskedrgb_single_ecoder_skipnet.yml' 2 29
+
