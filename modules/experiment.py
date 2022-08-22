@@ -24,6 +24,13 @@ modelname_to_class = {
     'InitialModel': InitialModel
 }
 
+class EdgeAttentionEarlyStopping(EarlyStopping):
+    def on_validation_end(self, trainer, pl_module):
+        # override this to disable early stopping at the end of val loop
+        if pl_module.current_epoch > 0:
+            # print('running early stopping')
+            self._run_early_stopping_check(trainer) 
+
 def run_experiment(hyper_params):
 
     # Reproducability
@@ -48,6 +55,9 @@ def run_experiment(hyper_params):
     
     model_checkpoint = ModelCheckpoint(save_weights_only=True, mode="min", monitor=hyper_params["monitor"])
     early_stopping = EarlyStopping(monitor=hyper_params["monitor"], mode='min', patience=5)
+    
+    if hyper_params['model class'] == 'EdgeAttentionModel':
+        early_stopping = EdgeAttentionEarlyStopping(monitor=hyper_params["monitor"], mode='min', patience=5)
 
     model_path = f"{hyper_params['model name']}_batch{hyper_params['batch size']}_{hyper_params['run id']}"
     checkpoint_path = CHECKPOINT_PATH + f"/experiment{hyper_params['experiment id']}"

@@ -62,6 +62,7 @@ class EdgeAttentionModel(pl.LightningModule):
         l1_loss, bce_loss = self._get_losses(batch)
         if self.current_epoch == 0:
             self.log('val_bce_edge_loss', bce_loss)
+            self.log('val_l1_depth_loss', 20)
         else:
             total_loss = self.hyper_params['lambda depth'] * l1_loss + self.hyper_params['lambda edge'] * bce_loss
             self.log('val_bce_edge_loss', bce_loss)

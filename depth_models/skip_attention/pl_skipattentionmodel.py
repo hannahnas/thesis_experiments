@@ -79,7 +79,8 @@ class SkipAttentionModel(pl.LightningModule):
         
         if self.smoothness_loss:
             self.log('train_smoothness_loss', smooth_loss)
-            loss = self.hyper_params['lambda l1'] * l1_loss - self.hyper_params['lambda smooth'] * smooth_loss
+            # add smoothness term
+            loss = self.hyper_params['lambda l1'] * l1_loss + self.hyper_params['lambda smooth'] * smooth_loss
             self.log('train_weighted_loss', loss)
         else:
             loss = l1_loss
@@ -100,7 +101,8 @@ class SkipAttentionModel(pl.LightningModule):
         
         if self.smoothness_loss:
             self.log('val_smoothness_loss', smooth_loss)
-            loss = self.hyper_params['lambda l1'] * l1_loss - self.hyper_params['lambda smooth'] * smooth_loss
+            # add smoothness term
+            loss = self.hyper_params['lambda l1'] * l1_loss + self.hyper_params['lambda smooth'] * smooth_loss
         else:
             loss = l1_loss
 

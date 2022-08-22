@@ -136,11 +136,11 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_22.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_23.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_24.pickle',
-        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_30.pickle',
-        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_31.pickle',
-        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_32.pickle',
-        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_33.pickle',
-        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_34.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_30.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_31.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_32.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_33.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_34.pickle',
     ]
 
     # skipnet_edge_ms_smooth = [
