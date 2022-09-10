@@ -2,7 +2,7 @@ project: Thesis
 name: Edge Attention
 
 parameters:
-    model name: 'EdgeAttentionModelPretrainBCE'
+    model name: 'EdgeAttentionModel'
     model class: 'EdgeAttentionModel'
     encoder type: 'gated'
 

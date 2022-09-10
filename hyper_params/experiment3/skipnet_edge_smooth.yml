@@ -2,7 +2,7 @@ project: Thesis
 name: Skip Attention
 
 parameters:
-    model name: 'DualEncoderSkipnetEdgeWithSmoothness'
+    model name: 'DualEncoderSkipnetEdge+MeanSmoothness'
     model class: 'SkipNetModel'
     encoder type: 'gated'
     single encoder: False

@@ -73,7 +73,7 @@ class SkipAttentionModel(pl.LightningModule):
             self.log('train_l1_downsampled2x', l1_down2x)
             self.log('train_l1_downsampled1x', l1_down1x)
             self.log('train_l1_full', l1_full)
-            l1_loss = l1_down2x + l1_down1x + l1_full
+            l1_loss = (l1_down2x + l1_down1x + l1_full) / 3
         else:
             self.log('train_l1_depth_loss', l1_loss)
         
