@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -p gpu_shared
+#SBATCH --gpus=1
+#SBATCH --cpus-per-task=5
+#SBATCH --job-name=GatedBaseline
+#SBATCH --ntasks=1
+#SBATCH --time=12:00:00
+#SBATCH --output=gated_baseline_rgbedge_%A.out
+
+module purge
+module load 2021
+module load Anaconda3/2021.05
+
+source activate inpaint_env
+
+cd ..
+python train.py 'hyper_params/experiment1/baseline_gated_rgbedge.yml' 15 10
+
