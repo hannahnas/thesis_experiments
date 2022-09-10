@@ -33,10 +33,10 @@ class EdgeAttentionModel(pl.LightningModule):
 
         depth_pred, edges_pred = self.forward(batch)
 
-        if self.current_epoch > 0:
-            l1_loss = L1_loss(depth_pred, depth_gt, mask)
-        else:
-            l1_loss = 0
+        #if self.current_epoch > 0:
+        l1_loss = L1_loss(depth_pred, depth_gt, mask)
+        #else:
+        #    l1_loss = 0
         bce_loss = cross_entropy_loss2d(edges_pred, edges_gt)
 
         return l1_loss, bce_loss
@@ -48,29 +48,29 @@ class EdgeAttentionModel(pl.LightningModule):
 
     def training_step(self, batch, batch_idx):
         l1_loss, bce_loss = self._get_losses(batch)
-        if self.current_epoch == 0:
-            # apply bce loss only during first epoch
-            total_loss = bce_loss
-            self.log('train_bce_edge_loss', bce_loss)
-        else:
-            total_loss = self.hyper_params['lambda depth'] * l1_loss + self.hyper_params['lambda edge'] * bce_loss
+        #if self.current_epoch == 0:
+        #    # apply bce loss only during first epoch
+        #    total_loss = bce_loss
+        #    self.log('train_bce_edge_loss', bce_loss)
+        #else:
+        total_loss = self.hyper_params['lambda depth'] * l1_loss + self.hyper_params['lambda edge'] * bce_loss
 
-            self.log('train_l1_depth_loss', l1_loss)
-            self.log('train_bce_edge_loss', bce_loss)
-            self.log('total_train_loss', total_loss)
+        self.log('train_l1_depth_loss', l1_loss)
+        self.log('train_bce_edge_loss', bce_loss)
+        self.log('total_train_loss', total_loss)
 
         return total_loss
 
     def validation_step(self, batch, batch_idx):
         l1_loss, bce_loss = self._get_losses(batch)
-        if self.current_epoch == 0:
-            self.log('val_bce_edge_loss', bce_loss)
-            self.log('val_l1_depth_loss', 20)
-        else:
-            total_loss = self.hyper_params['lambda depth'] * l1_loss + self.hyper_params['lambda edge'] * bce_loss
-            self.log('val_bce_edge_loss', bce_loss)
-            self.log('val_l1_depth_loss', l1_loss)
-            self.log('total_val_loss', total_loss)
+        #if self.current_epoch == 0:
+        #    self.log('val_bce_edge_loss', bce_loss)
+        #    self.log('val_l1_depth_loss', 20)
+        #else:
+        total_loss = self.hyper_params['lambda depth'] * l1_loss + self.hyper_params['lambda edge'] * bce_loss
+        self.log('val_bce_edge_loss', bce_loss)
+        self.log('val_l1_depth_loss', l1_loss)
+        self.log('total_val_loss', total_loss)
 
 
     def test_step(self, batch, batch_idx):

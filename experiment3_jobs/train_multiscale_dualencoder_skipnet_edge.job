@@ -6,7 +6,7 @@
 #SBATCH --job-name=Multiscale1x1DualEncSkipnetEdge
 #SBATCH --ntasks=1
 #SBATCH --time=12:00:00
-#SBATCH --output=multiscale1x1_dualencoder_skipnet_edge_%A.out
+#SBATCH --output=multiscale1x1div3_dualencoder_skipnet_edge_%A.out
 
 module purge
 module load 2021
@@ -14,4 +14,4 @@ module load Anaconda3/2021.05
 
 source activate inpaint_env
 cd ..
-python train.py 'hyper_params/experiment3/skipnet_edge_multiscale.yml' 3 59
+python train.py 'hyper_params/experiment3/skipnet_edge_multiscale.yml' 3 109
