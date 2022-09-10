@@ -18,12 +18,33 @@ class BaselineModel(pl.LightningModule):
         self.rgb_encoder = ResNetEncoder(in_channels=3, type=encoder_type)
         self.depth_encoder = ResNetEncoder(in_channels=1, type=encoder_type)
 
+        if 'concat edge' in hyper_params.keys():
+            if hyper_params['concat edge'] == 'rgb':
+                self.rgb_encoder = ResNetEncoder(in_channels=4, type=encoder_type)
+                self.concat_rgb = True
+                self.concat_depth = False
+            if hyper_params['concat edge'] == 'depth':
+                self.depth_encoder = ResNetEncoder(in_channels=2, type=encoder_type)
+                self.concat_depth = True
+                self.concat_rgb = False
+        else:
+            self.concat_rgb = False
+            self.concat_depth = False
+
         self.decoder = ResNetDecoder(in_channels=512, out_channels=1)
         
 
     def forward(self, batch):
         rgb = batch['rgb']
         masked_depth = (1 - batch['mask']) * batch['depth']
+        edges = batch['edges']
+
+        if self.concat_rgb:
+            rgb = torch.cat([rgb, edges], dim=1)
+            print('hello rgb')
+        if self.concat_depth:
+            masked_depth = torch.cat([masked_depth, edges], dim=1)
+            print('hello depth')
 
         rgb_feat = self.rgb_encoder(rgb)
         depth_feat = self.depth_encoder(masked_depth)

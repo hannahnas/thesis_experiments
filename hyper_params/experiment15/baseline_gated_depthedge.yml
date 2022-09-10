@@ -1,0 +1,12 @@
+project: Thesis
+name: Gated baseline
+
+parameters:
+    model name: "GatedBaselineDepthEdge"
+    model class: "BaselineModel"
+    encoder type: "gated"
+    batch size: 8
+    lr: 0.0001
+    monitor: "val_l1_depth_loss"
+    epochs: 8
+    concat edge: 'depth'
