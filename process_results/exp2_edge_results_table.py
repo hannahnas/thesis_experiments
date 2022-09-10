@@ -75,15 +75,30 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_21.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_22.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_23.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_24.pickle'
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_24.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_25.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_26.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_27.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_28.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModel_batch8_29.pickle'
     ]
 
     edgeattention_pretrain = [
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_60.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_61.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_62.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_63.pickle',
-        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_64.pickle'
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_60.pickle',
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_61.pickle',
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_62.pickle',
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_63.pickle',
+        # '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_batch8_64.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_V2_batch8_70.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_V2_batch8_71.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_V2_batch8_72.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_V2_batch8_73.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_V2_batch8_74.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_V2_batch8_75.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_V2_batch8_76.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_V2_batch8_77.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_V2_batch8_78.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment2/EdgeAttentionModelPretrainBCE_V2_batch8_79.pickle',
     ]
 
     skipattention = [
@@ -165,7 +180,7 @@ if __name__ == "__main__":
             values = tuple(results[split][0][s] for results in result_dicts)
             mean = np.mean(values).round(4)
             std = np.std(values).round(4)
-            results_table.at[i, s] = f'{mean} ({std})'
+            results_table.at[i, s] = f'{mean}'# ({std})'
             results_table.at[i, 'runs'] = len(values)
 
     print(f'{split} scores')

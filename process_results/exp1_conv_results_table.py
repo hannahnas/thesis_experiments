@@ -21,8 +21,8 @@ def create_table(model_index, results_paths, split='val'):
             values = tuple(results[split][0][s] for results in result_dicts)
 
             mean = np.mean(values).round(4)
-            std = np.std(values).round(4)
-            results_table.at[i, s] = f'{mean} ({std})'
+            # std = np.std(values).round(4)
+            results_table.at[i, s] = f'{mean}'# ({std})'
             results_table.at[i, 'runs'] = len(values)
         results_table.at[i, 'avg #steps until convergence'] = np.mean(convergence_steps)
     print(f'{split} scores')

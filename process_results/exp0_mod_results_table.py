@@ -21,7 +21,7 @@ def create_table(model_index, results_paths, split='val'):
 
             mean = np.mean(values).round(4)
             std = np.std(values).round(4)
-            results_table.at[i, s] = f'{mean} ({std})'
+            results_table.at[i, s] = f'{mean} '#({std})'
             results_table.at[i, 'runs'] = len(values)
         results_table.at[i, 'avg #steps convergence'] = np.mean(convergence_steps)
         

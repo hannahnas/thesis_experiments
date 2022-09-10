@@ -14,3 +14,5 @@ grad_cam_images/
 local_checkpoints/
 
 train_plots.ipynb
+
+plots/

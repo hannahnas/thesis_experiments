@@ -18,7 +18,7 @@ def create_table(model_index, results_paths, split='val'):
 
             mean = np.mean(values).round(4)
             std = np.std(values).round(4)
-            results_table.at[i, s] = f'{mean} ({std})'
+            results_table.at[i, s] = f'{mean}'# ({std})'
             results_table.at[i, 'runs'] = len(values)
     print(f'{split} scores')
     print(results_table)
@@ -61,6 +61,20 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+Smoothness_batch8_51.pickle'
     ]
 
+    skipattn_avgmean_smooth = [ 
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+MeanSmoothness_batch8_70.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+MeanSmoothness_batch8_71.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+MeanSmoothness_batch8_72.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+MeanSmoothness_batch8_73.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+MeanSmoothness_batch8_74.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+MeanSmoothness_batch8_75.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+MeanSmoothness_batch8_76.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+MeanSmoothness_batch8_77.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+MeanSmoothness_batch8_78.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/SkipAttention+MeanSmoothness_batch8_79.pickle'
+    ]
+
+
     # skipattn_multi_scale = [
     #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScaleSkipAttention_batch8_20.pickle',
     #     '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScaleSkipAttention_batch8_21.pickle',
@@ -80,6 +94,19 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_57.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_58.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_59.pickle',
+    ]
+
+    skipattn_multiscale1x1_div3 = [
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_100.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_101.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_102.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_103.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_104.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_105.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_106.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_107.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_108.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/MultiScale1x1SkipAttention_batch8_109.pickle',
     ]
 
     # skipattn_multi_scale_smooth = [
@@ -135,6 +162,20 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithMultiscale1x1_batch8_59.pickle',
     ]
 
+    skipnet_edge_ms1x1div3 = [ 
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithMultiscale1x1_batch8_100.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithMultiscale1x1_batch8_101.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithMultiscale1x1_batch8_102.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithMultiscale1x1_batch8_103.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithMultiscale1x1_batch8_104.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithMultiscale1x1_batch8_105.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithMultiscale1x1_batch8_106.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithMultiscale1x1_batch8_107.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithMultiscale1x1_batch8_108.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithMultiscale1x1_batch8_109.pickle',
+    ]
+
+
     skipnet_edge_smooth = [
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_20.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_21.pickle',
@@ -146,6 +187,20 @@ if __name__ == "__main__":
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_32.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_33.pickle',
         '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdgeWithSmoothness_batch8_34.pickle',
+    ]
+
+    skipnet_edge_plusmean_smooth = [ 
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+MeanSmoothness_batch8_70.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+MeanSmoothness_batch8_71.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+MeanSmoothness_batch8_72.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+MeanSmoothness_batch8_73.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+MeanSmoothness_batch8_74.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+MeanSmoothness_batch8_75.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+MeanSmoothness_batch8_76.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+MeanSmoothness_batch8_77.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+MeanSmoothness_batch8_78.pickle',
+        '/home/hannah/Documents/Thesis/thesis_experiments/results/experiment3/DualEncoderSkipnetEdge+MeanSmoothness_batch8_79.pickle'
+        
     ]
 
     # skipnet_edge_ms_smooth = [
@@ -182,34 +237,42 @@ if __name__ == "__main__":
         'Skip Attention',
         # 'Skip Attention + ms', 
         'Skip Attention + ms 1x1',
-        'Skip attention + smooth', 
-        'Skip Attention pos smooth',
+        # 'Skip attention + smooth', 
+        # 'Skip Attention pos smooth',
+        'Skip Attention avgmean smooth',
         # 'Skip attention + ms + smooth', 
-        'Skip Attention + ms 1x1 + smooth',
+        # 'Skip Attention + ms 1x1 + smooth',
         'Skipnet (edge)', 
         # 'Skipnet (edge) + ms', 
         'Skipnet (edge) + ms 1x1',
-        'Skipnet (edge) + smooth', 
-        'Skipnet edge pos smooth',
+        # 'Skipnet (edge) + smooth', 
+        # 'Skipnet edge pos smooth',
+        'Skipnet edge plavg smooth',
         # 'Skipnet (edge) + ms + smooth',
-        'Skipnet (edge) + ms 1x1 + smooth'
+        # 'Skipnet (edge) + ms 1x1 + smooth'
+        'skipattn ms div3',
+        'skipnet edge ms div3'
         ]
 
     results_paths = [
         skipattn,
         # skipattn_multi_scale, 
         skipattn_multiscale1x1,
-        skipattn_smooth, 
-        skipattn_PLUS_smooth,
+        # skipattn_smooth, 
+        # skipattn_PLUS_smooth,
+        skipattn_avgmean_smooth,
         # skipattn_multi_scale_smooth,
-        skipattn_multiscale1x1_smooth,
+        # skipattn_multiscale1x1_smooth,
         skipnet_edge,
         # skipnet_edge_ms,
         skipnet_edge_ms1x1,
-        skipnet_edge_smooth,
-        skipnet_edge_PLUS_smooth,
+        # skipnet_edge_smooth,
+        # skipnet_edge_PLUS_smooth,
+        skipnet_edge_plusmean_smooth,
         # skipnet_edge_ms_smooth,
-        skipnet_edge_ms1x1_smooth
+        # skipnet_edge_ms1x1_smooth,
+        skipattn_multiscale1x1_div3,
+        skipnet_edge_ms1x1div3
         ]
 
     create_table(model_index, results_paths, split='val')
